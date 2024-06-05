@@ -5,9 +5,11 @@ const cors = require("cors");
 const { Vonage } = require("@vonage/server-sdk");
 
 const app = express();
-app.use(cors({
-  origin: "*"
-}));
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 app.use(bodyParser.json());
 
 let otpStorage = {}; // Temporary storage for OTPs
@@ -20,7 +22,7 @@ const vonage = new Vonage({
 const from = "Vonage APIs";
 // const to = "918207202380";
 const text = "This is sent from the app";
-
+app.options("*", cors()); // Enable pre-flight for all routes
 app.post("/send-otp", async (req, res) => {
   try {
     const { phoneNumber: to } = req.body;
