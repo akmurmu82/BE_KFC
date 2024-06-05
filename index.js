@@ -21,6 +21,9 @@ const from = "Vonage APIs";
 
 // Enable pre-flight for all routes
 // app.options("*", cors());
+app.get("/", (req, res) => {
+  res.json({ message: "Welcome to the server" });
+});
 
 app.post("/send-otp", async (req, res) => {
   try {
@@ -59,10 +62,6 @@ app.post("/verify-otp", (req, res) => {
   } else {
     res.status(400).json({ success: false, message: "Invalid OTP" });
   }
-});
-
-app.get("/", (req, res) => {
-  res.json({ message: "Welcome to the server" });
 });
 
 app.listen(3000, () => {
