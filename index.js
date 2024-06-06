@@ -54,7 +54,7 @@ app.post("/verify-otp", (req, res) => {
 
   // Verify OTP
   if (otpStorage[phoneNumber] == otp) {
-    delete otpStorage[phoneNumber]; // Clear the OTP after verification
+    // delete otpStorage[phoneNumber]; // Clear the OTP after verification
     res.status(200).json({
       success: true,
       message: "OTP verification successful",
