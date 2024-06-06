@@ -13,9 +13,9 @@ app.use(bodyParser.json());
 let otpStorage = {}; // Temporary storage for OTPs
 
 const vonage = new Vonage({
-  apiKey: "c211a1db",
-  apiSecret: "iWn9vRwihk9d4MMb",
-});
+  apiKey: "af211430",
+  apiSecret: "xk1fkWFiQx7iMQK6"
+})
 
 const from = "Vonage APIs";
 
