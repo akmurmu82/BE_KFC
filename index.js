@@ -53,14 +53,14 @@ app.post("/verify-otp", (req, res) => {
   const { phoneNumber, otp } = req.body;
 
   // Verify OTP
-  if (otpStorage[phoneNumber] === otp) {
+  if (otpStorage[phoneNumber] == otp) {
     delete otpStorage[phoneNumber]; // Clear the OTP after verification
     res.status(200).json({
       success: true,
       message: "OTP verification successful",
     });
   } else {
-    res.status(400).json({ success: false, message: "Invalid OTP" });
+    res.status(400).json({ success: false, message: "Invalid OTP", otpStorage });
   }
 });
 
