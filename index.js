@@ -1,12 +1,12 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-// const cors = require("cors");
+const cors = require("cors");
 const { Vonage } = require("@vonage/server-sdk");
 
 const app = express();
 
 // Configure CORS to allow requests from your frontend
-// app.use(cors({ origin: "http://127.0.0.1:5173" }));
+app.use(cors({ origin: "http://127.0.0.1:5173" }));
 
 app.use(bodyParser.json());
 
@@ -20,7 +20,7 @@ const vonage = new Vonage({
 const from = "Vonage APIs";
 
 // Enable pre-flight for all routes
-// app.options("*", cors());
+app.options("*", cors());
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to the server" });
 });
