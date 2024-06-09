@@ -5,8 +5,16 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  description: {
+  desc: {
     type: String,
+    required: true,
+  },
+  image: {
+    type: String,
+    required: true,
+  },
+  postId: {
+    type: Number,
     required: true,
   },
   price: {
@@ -15,6 +23,6 @@ const productSchema = new mongoose.Schema({
   },
 });
 
-const Product = mongoose.model("kfcProduct", productSchema);
+const Product = mongoose.model("Product", productSchema);
 
 module.exports = Product;
