@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 8080;
 const app = express();
 
 // Configure CORS to allow requests from your frontend
-app.use(cors({ origin: "http://127.0.0.1:5173" }));
+app.use(cors({ origin: "*" }));
 app.use(bodyParser.json());
 
 // Routes
