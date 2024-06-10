@@ -4,20 +4,29 @@ const mongoose = require("mongoose");
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true,
-    unique: true,
+    // required: true,
+    // unique: true,
+    default: "Usery",
   },
   email: {
     type: String,
-    required: true,
-    unique: true,
+    // required: true,
+    // unique: true,
+    default: "example@gmail.com",
   },
   password: {
     type: String,
+    // required: true,
+    default: "password",
+  },
+  phoneNumber: {
+    type: Number,
     required: true,
   },
   photoURL: {
     type: String,
+    default:
+      "https://cdn4.iconfinder.com/data/icons/green-shopper/1068/user.png",
   },
   // You can add more fields as needed
 });

@@ -46,7 +46,7 @@ app.post("/send-otp", async (req, res) => {
         console.log("Message sent successfully");
         otpStorage[to] = otp;
         console.log(resp, req.body, otpStorage);
-        res.status(200).json({ success: true });
+        res.status(200).json({ success: true, otp });
       })
       .catch((err) => {
         console.log("There was an error sending the messages.");
