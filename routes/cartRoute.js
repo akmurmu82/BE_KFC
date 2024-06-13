@@ -7,8 +7,8 @@ const updateItemInCart = require("../controllers/cart/updateItemInCart");
 
 // Route to handle user registration
 
-cartRouter.post("/getCart", getCart);
-cartRouter.post("/addToCart", updateItemInCart);
-cartRouter.post("/removeFromCart", removeFromCart);
+cartRouter.post("/get", getCart);
+cartRouter.post("/add", updateItemInCart);
+cartRouter.post("/remove", removeFromCart);
 
 module.exports = cartRouter;

@@ -19,6 +19,10 @@ const userSchema = new mongoose.Schema({
     // required: true,
     default: "password",
   },
+  isTemporary: {
+    type: Boolean,
+    default: false,
+  },
   phoneNumber: {
     type: Number,
     required: true,
