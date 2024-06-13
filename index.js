@@ -6,6 +6,7 @@ const { Vonage } = require("@vonage/server-sdk");
 const connection = require("./db");
 const userRouter = require("./routes/userRoute");
 const productRouter = require("./routes/productRoute");
+const cartRouter = require("./routes/cartRoute");
 
 const PORT = process.env.PORT || 8080;
 
@@ -17,6 +18,7 @@ app.use(bodyParser.json());
 
 // Routes
 app.use("/users", userRouter);
+app.use("/cart", cartRouter);
 app.use("/products", productRouter);
 
 let otpStorage = {}; // Temporary storage for OTPs

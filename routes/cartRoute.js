@@ -1,14 +1,14 @@
 const express = require("express");
-const userRouter = express.Router();
+const cartRouter = express.Router();
 require("dotenv").config();
-const loginUser = require("../controllers/user/addToCart");
-const userRegister = require("../controllers/user/removeFromCart");
-const updateProfile = require("../controllers/user/getCart");
+const getCart = require("../controllers/cart/getCart");
+const removeFromCart = require("../controllers/cart/removeFromCart");
+const updateItemInCart = require("../controllers/cart/updateItemInCart");
 
 // Route to handle user registration
 
-userRouter.post("/addToCart", loginUser);
-userRouter.post("/removeFromCart", userRegister);
-userRouter.post("/getCart", updateProfile);
+cartRouter.post("/getCart", getCart);
+cartRouter.post("/addToCart", updateItemInCart);
+cartRouter.post("/removeFromCart", removeFromCart);
 
-module.exports = userRouter;
+module.exports = cartRouter;
