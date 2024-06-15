@@ -8,6 +8,7 @@ const cartItemSchema = new mongoose.Schema({
     required: true,
   },
   quantity: { type: Number, required: true, default: 1 },
+  price: { type: Number, default: 0 },
 });
 
 const cartSchema = mongoose.Schema({
@@ -18,7 +19,6 @@ const cartSchema = mongoose.Schema({
     unique: true,
   },
   items: [cartItemSchema],
-  price: { type: Number, default: 0 },
 });
 
 const Cart = mongoose.model("Cart", cartSchema);
