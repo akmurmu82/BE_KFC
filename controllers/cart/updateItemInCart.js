@@ -27,6 +27,9 @@ const updateItemInCart = async (req, res) => {
 
       if (itemIndex > -1) {
         cart.items[itemIndex].quantity += quantity;
+        if (cart.items[itemIndex].quantity <= 0) {
+          cart.items.splice(itemIndex, 1); // Remove item if quantity <= 0
+        }
       } else {
         cart.items.push({ productId, quantity });
       }
