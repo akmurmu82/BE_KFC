@@ -1,10 +1,10 @@
-const { Cart, CartItemSchema } = require("../../models/cartModel");
+const Cart = require("../../models/cartModel");
 const User = require("../../models/userModel");
 
 // This can be used to add item as well as to updte item quantity.
 // The "Quantity" here can be negative if item is to be decreased.
 const updateItemInCart = async (req, res) => {
-  const { userId, productId, quantity, price } = req.body;
+  const { userId, productId, quantity } = req.body;
   try {
     let cart;
     if (userId) {
@@ -16,7 +16,7 @@ const updateItemInCart = async (req, res) => {
       console.log("tempUser", tempUser);
       cart = await Cart.findOne({ userId: tempUser._id });
       if (!cart) {
-        cart = new Cart({ userId: tempUser._id, items: [], price: 0 });
+        cart = new Cart({ userId: tempUser._id, items: [] });
       }
     }
 
@@ -31,14 +31,13 @@ const updateItemInCart = async (req, res) => {
           cart.items.splice(itemIndex, 1); // Remove item if quantity <= 0
         }
       } else {
-        let cartItem = new CartItemSchema({ productId, quantity, price });
-        cart.items.push(cartItem);
+        cart.items.push({ productId, quantity });
       }
 
       await cart.save();
       res.status(200).json({ status: true, data: cart });
     } else {
-      cart = new Cart({ userId, items: [{ productId, quantity, price }] });
+      cart = new Cart({ userId, items: [{ productId, quantity }] });
       await cart.save();
       res.status(200).json({ status: true, data: cart });
     }
