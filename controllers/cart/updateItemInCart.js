@@ -4,7 +4,7 @@ const User = require("../../models/userModel");
 // This can be used to add item as well as to updte item quantity.
 // The "Quantity" here can be negative if item is to be decreased.
 const updateItemInCart = async (req, res) => {
-  const { userId, productId, quantity } = req.body;
+  const { userId, productId, quantity, price } = req.body;
   try {
     let cart;
     if (userId) {
@@ -16,7 +16,7 @@ const updateItemInCart = async (req, res) => {
       console.log("tempUser", tempUser);
       cart = await Cart.findOne({ userId: tempUser._id });
       if (!cart) {
-        cart = new Cart({ userId: tempUser._id, items: [] });
+        cart = new Cart({ userId: tempUser._id, items: [], price:0 });
       }
     }
 
@@ -31,13 +31,13 @@ const updateItemInCart = async (req, res) => {
           cart.items.splice(itemIndex, 1); // Remove item if quantity <= 0
         }
       } else {
-        cart.items.push({ productId, quantity });
+        cart.items.push({ productId, quantity, price });
       }
 
       await cart.save();
       res.status(200).json({ status: true, data: cart });
     } else {
-      cart = new Cart({ userId, items: [{ productId, quantity }] });
+      cart = new Cart({ userId, items: [{ productId, quantity, price }] });
       await cart.save();
       res.status(200).json({ status: true, data: cart });
     }
