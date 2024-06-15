@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const cartItemSchema = new mongoose.Schema({
+const CartItemSchema = new mongoose.Schema({
   productId: {
     type: mongoose.Schema.Types.ObjectId, // Research more about how this line helps in making the relationship
 
@@ -18,8 +18,8 @@ const cartSchema = mongoose.Schema({
     required: true,
     unique: true,
   },
-  items: [cartItemSchema],
+  items: [CartItemSchema],
 });
 
 const Cart = mongoose.model("Cart", cartSchema);
-module.exports = Cart;
+module.exports = {Cart, CartItemSchema};

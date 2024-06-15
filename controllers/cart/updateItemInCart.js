@@ -1,4 +1,4 @@
-const Cart = require("../../models/cartModel");
+const { Cart, CartItemSchema } = require("../../models/cartModel");
 const User = require("../../models/userModel");
 
 // This can be used to add item as well as to updte item quantity.
@@ -16,7 +16,7 @@ const updateItemInCart = async (req, res) => {
       console.log("tempUser", tempUser);
       cart = await Cart.findOne({ userId: tempUser._id });
       if (!cart) {
-        cart = new Cart({ userId: tempUser._id, items: [], price:0 });
+        cart = new Cart({ userId: tempUser._id, items: [], price: 0 });
       }
     }
 
@@ -31,7 +31,8 @@ const updateItemInCart = async (req, res) => {
           cart.items.splice(itemIndex, 1); // Remove item if quantity <= 0
         }
       } else {
-        cart.items.push({ productId, quantity, price });
+        let cartItem = new CartItemSchema({ productId, quantity, price });
+        cart.items.push(cartItem);
       }
 
       await cart.save();
