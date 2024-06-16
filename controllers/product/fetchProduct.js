@@ -4,11 +4,11 @@ const { default: axios } = require("axios");
 const Product = require("../../models/productModel");
 
 const fetchProduct = async (req, res) => {
-  const { productId } = req.body;
+  const { productId } = req.params;
+  //   console.log(productId);
   try {
-    const product = await Product.find({ _id:productId });
+    const product = await Product.find({ _id: productId });
 
-    // Respond with a success message
     res.status(200).json({
       status: true,
       data: product,

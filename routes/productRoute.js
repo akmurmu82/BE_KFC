@@ -6,7 +6,7 @@ require("dotenv").config();
 const productRouter = express.Router();
 
 productRouter.get("/all-products", fetchAllProducts);
-productRouter.post("/product", fetchProduct);
+productRouter.post("/:productId", fetchProduct);
 productRouter.post("/create", createProduct);
 
 module.exports = productRouter;
