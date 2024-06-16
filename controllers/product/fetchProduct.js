@@ -7,11 +7,11 @@ const fetchProduct = async (req, res) => {
   const { productId } = req.params;
   //   console.log(productId);
   try {
-    const data = await Product.find({ _id: productId });
+    const product = await Product.find({ _id: productId });
 
     res.status(200).json({
       status: true,
-      data: data.data,
+      data: product,
     });
   } catch (error) {
     console.error("Error fetching product:", error);
